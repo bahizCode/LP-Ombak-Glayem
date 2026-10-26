@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id" style="scroll-behavior: smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ombak Glayem – Sekolah Selancar Juntinyuat</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;700;800&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class', // night mode: tambah/hapus class "dark" di <html>
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Bricolage Grotesque"', 'system-ui', 'sans-serif'] },
+          colors: {
+            sea:  { DEFAULT: '#0F7B8A', light: '#4FD1C5' },
+            ink:  { DEFAULT: '#0E2A33', night: '#E6F1F2' },
+            foam: { DEFAULT: '#F2F7F7', night: '#0A1A20' },
+            sun:  '#FFB84D',
+          },
+          keyframes: {
+            bob: {
+              '0%,100%': { transform: 'translateY(0) rotate(-3deg)' },
+              '50%':     { transform: 'translateY(-14px) rotate(3deg)' },
+            },
+          },
+          animation: { bob: 'bob 5s ease-in-out infinite' },
+        },
+      },
+    };
+  </script>
+</head>
+
+<body class="bg-foam text-ink font-sans antialiased transition-colors duration-500
+             dark:bg-foam-night dark:text-ink-night">
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-20 border-b border-ink/10 bg-foam/90 backdrop-blur
+                 transition-colors duration-500 dark:border-white/10 dark:bg-foam-night/90">
+    <nav class="mx-auto flex max-w-5xl items-center justify-between px-5 py-4">
+      <a href="#" class="text-xl font-extrabold tracking-tight">Ombak Glayem</a>
+
+      <ul class="hidden gap-8 text-sm font-medium sm:flex">
+        <li><a href="#paket" class="transition hover:text-sea dark:hover:text-sea-light">Paket</a></li>
+        <li><a href="#kenapa" class="transition hover:text-sea dark:hover:text-sea-light">Kenapa kami</a></li>
+        <li><a href="#daftar" class="transition hover:text-sea dark:hover:text-sea-light">Daftar</a></li>
+      </ul>
+
+      <!-- TOGGLE NIGHT MODE (JS: klik → toggle class "dark" di <html>) -->
+      <button id="theme-toggle" type="button" aria-label="Ganti tema"
+              class="grid h-10 w-10 place-items-center rounded-full border border-ink/20 text-lg
+                     transition hover:bg-ink/5 focus-visible:outline focus-visible:outline-2
+                     focus-visible:outline-offset-2 focus-visible:outline-sea
+                     dark:border-white/20 dark:hover:bg-white/10 dark:focus-visible:outline-sea-light">
+        <span class="dark:hidden" aria-hidden="true">🌙</span>
+        <span class="hidden dark:inline" aria-hidden="true">☀️</span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="mx-auto grid max-w-5xl items-center gap-10 px-5 py-16 sm:py-24 md:grid-cols-2 sm:gap-20">
+      <div>
+        <h1 class="text-4xl font-extrabold leading-tight tracking-tight sm:text-6xl">
+          Berdiri di atas ombak pertamamu.
+        </h1>
+        <p class="mt-5 max-w-md text-lg text-ink/70 dark:text-ink-night/70">
+          Sekolah selancar di Pantai Pelabuhanratu. Instruktur sabar, papan disediakan, ombak selalu ada.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#daftar"
+             class="rounded-full bg-sea px-6 py-3 font-bold text-white transition
+                    hover:bg-ink active:scale-95 dark:bg-sea-light dark:text-foam-night dark:hover:bg-white">
+            Booking kelas
+          </a>
+          <a href="#paket"
+             class="rounded-full border border-ink/25 px-6 py-3 font-bold transition
+                    hover:bg-ink/5 dark:border-white/25 dark:hover:bg-white/10">
+            Lihat paket
+          </a>
+        </div>
+      </div>
+
+      <!-- Satu animasi utama: papan selancar mengayun -->
+      <div class="relative grid min-h-64 place-items-center sm:min-h-80">
+        <div class="absolute h-64 w-64 rounded-full bg-sun/80 dark:bg-sea/40 sm:h-80 sm:w-80"></div>
+        <div class="relative text-[9rem] leading-none motion-safe:animate-bob sm:text-[12rem]" aria-hidden="true">🏄</div>
+      </div>
+    </section>
+
+    <!-- CAROUSEL -->
+    <section id="paket" class="mx-auto max-w-5xl px-5 py-12">
+      <h2 class="mb-6 text-3xl font-extrabold tracking-tight">Pilih paket belajarmu</h2>
+
+      <div id="carousel" class="relative">
+        <!-- Viewport: sembunyikan slide yang tidak aktif -->
+        <div class="overflow-hidden rounded-3xl">
+          <!-- TRACK: JS geser pakai style.transform = `translateX(-${index * 100}%)` -->
+          <div id="carousel-track" class="flex transition-transform duration-500 ease-out">
+
+            <!-- Slide 1 -->
+            <article class="carousel-slide w-full shrink-0 bg-sea p-8 text-white sm:p-14">
+              <p class="text-sm font-medium opacity-80">2 jam · maks. 4 orang</p>
+              <h3 class="mt-2 text-3xl font-extrabold sm:text-5xl">Pemula</h3>
+              <p class="mt-4 max-w-md text-lg opacity-90">Belajar dayung, posisi papan, dan berdiri di ombak kecil dekat pantai.</p>
+              <p class="mt-8 text-2xl font-bold">Rp 250.000</p>
+            </article>
+
+            <!-- Slide 2 -->
+            <article class="carousel-slide w-full shrink-0 bg-sun p-8 text-ink sm:p-14">
+              <p class="text-sm font-medium opacity-80">3 jam · maks. 3 orang</p>
+              <h3 class="mt-2 text-3xl font-extrabold sm:text-5xl">Menengah</h3>
+              <p class="mt-4 max-w-md text-lg opacity-90">Baca arah ombak, belok, dan tangkap ombak lebih jauh dari bibir pantai.</p>
+              <p class="mt-8 text-2xl font-bold">Rp 400.000</p>
+            </article>
+
+            <!-- Slide 3 -->
+            <article class="carousel-slide w-full shrink-0 bg-ink p-8 text-ink-night sm:p-14 dark:bg-white/10">
+              <p class="text-sm font-medium opacity-80">Sore hari · 2 jam</p>
+              <h3 class="mt-2 text-3xl font-extrabold sm:text-5xl">Selancar sunset</h3>
+              <p class="mt-4 max-w-md text-lg opacity-90">Sesi santai menjelang matahari terbenam. Cocok untuk semua level.</p>
+              <p class="mt-8 text-2xl font-bold">Rp 300.000</p>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- Tombol prev / next -->
+        <button id="carousel-prev" type="button" aria-label="Slide sebelumnya"
+                class="absolute left-3 top-1/2 text-xl grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full
+                       bg-white/90 text-xl text-ink shadow transition hover:scale-110 active:scale-95
+                       focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sea">
+          ‹
+        </button>
+        <button id="carousel-next" type="button" aria-label="Slide berikutnya"
+                class="absolute right-3 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full
+                       bg-white/90 text-xl text-ink shadow transition hover:scale-110 active:scale-95
+                       focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sea">
+          ›
+        </button>
+
+        <!-- Dots: JS tukar class aktif (w-8 bg-sea) ↔ non-aktif (w-2.5 bg-ink/25) -->
+        <div id="carousel-dots" class="mt-5 flex justify-center gap-2">
+          <button data-index="0" aria-label="Slide 1" class="h-2.5 w-8 rounded-full bg-sea transition-all duration-300 dark:bg-sea-light"></button>
+          <button data-index="1" aria-label="Slide 2" class="h-2.5 w-2.5 rounded-full bg-ink/25 transition-all duration-300 dark:bg-white/25"></button>
+          <button data-index="2" aria-label="Slide 3" class="h-2.5 w-2.5 rounded-full bg-ink/25 transition-all duration-300 dark:bg-white/25"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- KENAPA KAMI -->
+    <section id="kenapa" class="mx-auto max-w-5xl px-5 py-16">
+      <h2 class="text-3xl font-extrabold tracking-tight">Kenapa belajar di sini</h2>
+      <div class="mt-8 grid gap-8 sm:grid-cols-3">
+        <div>
+          <h3 class="text-xl font-bold">Instruktur bersertifikat</h3>
+          <p class="mt-2 text-ink/70 dark:text-ink-night/70">Semua instruktur lulus sertifikasi keselamatan pantai dan P3K.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold">Peralatan lengkap</h3>
+          <p class="mt-2 text-ink/70 dark:text-ink-night/70">Papan, leash, dan rash guard sudah termasuk di harga paket.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold">Kelas kecil</h3>
+          <p class="mt-2 text-ink/70 dark:text-ink-night/70">Maksimal empat murid per instruktur, jadi kamu selalu diperhatikan.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA / FORM -->
+    <section id="daftar" class="mx-auto max-w-5xl px-5 pb-20">
+      <div class="rounded-3xl bg-ink p-8 text-ink-night sm:p-14 dark:bg-white/10">
+        <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">Mau coba akhir pekan ini?</h2>
+        <p class="mt-3 max-w-md opacity-80">Tinggalkan emailmu, kami kirim jadwal kelas yang masih kosong.</p>
+
+        <form id="email-form" class="mt-6 flex max-w-md flex-col gap-3 sm:flex-row">
+          <input id="email-input" type="email" required placeholder="email@kamu.com" aria-label="Email"
+                 class="w-full rounded-full border border-white/20 bg-white/10 px-5 py-3 text-white
+                        placeholder-white/50 outline-none transition focus:border-sun focus:ring-2 focus:ring-sun/40" />
+          <button id="email-submit" type="submit"
+                  class="rounded-full bg-sun px-6 py-3 font-bold text-ink transition hover:brightness-110 active:scale-95">
+            Kirim jadwal
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-ink/10 py-8 text-center text-sm text-ink/60 dark:border-white/10 dark:text-ink-night/60">
+    © 2026 Ombak Glayem, Juntinyuat, West Java – dibuat oleh bahizCode ❤️
+  </footer>
+
+  <!-- ============================================================
+       BAGIAN JAVASCRIPT
+       ID penting: #theme-toggle, #carousel-track, #carousel-prev,
+       #carousel-next, #carousel-dots (button[data-index]),
+       #email-input, #email-submit, #email-message
+
+       TODO:
+       1. Night mode
+          - klik #theme-toggle → document.documentElement.classList.toggle('dark')
+          - simpan pilihan di localStorage, baca lagi saat halaman dibuka
+          - bonus: ikuti prefers-color-scheme kalau belum ada pilihan
+       2. Carousel
+          - variabel index, geser track dengan translateX(-index*100%)
+          - tombol prev/next (loop dari akhir ke awal)
+          - dots: klik pindah slide + update class aktif
+          - bonus: autoplay setiap 5 detik, berhenti saat hover
+       3. Form email: validasi, lalu tampilkan #email-message
+       ============================================================ -->
+  <script src="script.js"></script>
+  </div>
+</body>
+</html>
